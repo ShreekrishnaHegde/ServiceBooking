@@ -10,7 +10,7 @@ import { Route, Router } from '@angular/router';
   standalone: false,
   
   templateUrl: './signup-client.component.html',
-  styleUrl: './signup-client.component.scss'
+  styleUrls: ['./signup-client.component.scss']
 })
 export class SignupClientComponent {
   validateForm!:FormGroup;

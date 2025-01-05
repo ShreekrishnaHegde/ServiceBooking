@@ -31,7 +31,7 @@ registerLocaleData(en);
     AppRoutingModule,
     FormsModule,
     DemoNgZorroAntdModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     provideNzI18n(en_US),
