@@ -9,7 +9,7 @@ import { ClientDashboardComponent } from './pages/client-dashboard/client-dashbo
 @NgModule({
   declarations: [
     ClientComponent,
-    ClientDashboardComponent
+    ClientDashboardComponent,
   ],
   imports: [
     CommonModule,
