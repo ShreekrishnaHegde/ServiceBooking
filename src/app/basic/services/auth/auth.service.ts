@@ -14,16 +14,16 @@ export class AuthService {
   constructor(private http: HttpClient,private userStorageService: UserStorageService) {}
 
   registerClient(signupRequestDto:any):Observable<any>{
-    return this.http.post(BASIC_URL+"client/sign-up",signupRequestDto);
+    return this.http.post(BASIC_URL + "client/sign-up",signupRequestDto);
   }
 
   registerCompany(signupRequestDto:any):Observable<any>{
-    return this.http.post(BASIC_URL+"company/sign-up",signupRequestDto);
+    return this.http.post(BASIC_URL + "company/sign-up",signupRequestDto);
   }
 
-  login(userName:string,password:string){
-    return this.http.post(BASIC_URL+"authenticate",{userName,password},{observe:'response'}).pipe(
-      map((res: HttpResponse<any>) =>{
+  login(username:string,password:string){
+    return this.http.post(BASIC_URL+"authenticate",{username,password},{observe:'response'}).pipe(
+      map((res: HttpResponse<any>) =>{  
         console.log(res.body);
         this.userStorageService.saveUser(res.body);
         const tokenLength=res.headers.get(AUTH_HEADER)?.length;

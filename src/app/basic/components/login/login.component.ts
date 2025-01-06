@@ -45,7 +45,7 @@ export class LoginComponent {
       const userName = this.validateForm.get('userName')?.value;
       const password = this.validateForm.get('password')?.value;
   
-      this.authService.login(userName, password).subscribe(
+      this.authService.login(userName,password).subscribe(
         res => {
           console.log(res);
         },
