@@ -1,17 +1,84 @@
-<nz-header class="main-header" nz-row nzType="flex" style="background-color: #bb2929">
+<div *ngIf="!isClientLoggedIn && !isCompanyLoggedIn">
+  <nz-header class="main-header" nz-row nzType="flex" style="background-color: #bb2929">
 
-  <div>
-    <h2 style="color: white; padding-left: 10px;">Service Booking System</h2>
-  </div>
+    <div>
+      <h2 style="color: white; padding-left: 10px;">Service Booking System</h2>
+    </div>
+  
+    <div class="nav-links">
+        <a nz-button nzType="link" routerLink="/home"routerLinkActive="active">Home</a>
+        <a nz-button nzType="link" routerLink="/register"routerLinkActive="active">Register</a>
+        <a nz-button nzType="link" routerLink="/login"routerLinkActive="active">Login</a>
+  
+  
+    </div>
+  
+  </nz-header>
+</div>
 
-  <div class="nav-links">
-      <a nz-button nzType="link" routerLink="/home"routerLinkActive="active">Home</a>
-      <a nz-button nzType="link" routerLink="/register"routerLinkActive="active">Register</a>
-      <a nz-button nzType="link" routerLink="/login"routerLinkActive="active">Login</a>
 
+<div *ngIf="isClientLoggedIn">
+  <nz-header class="main-header" nz-row nzType="flex" style="background-color: #bb2929">
+    <div>
+      <h2 style="color: white; padding-left: 10px;">Service Booking System</h2>
+    </div>
 
-  </div>
+    <div class="nav-links">
+      <a nz-button nz-Type="link" routerLink="/client/dashboard" routerLinkActive="active">Dashboard</a>
+      <a nz-button nz-Type="link" routerLink="/client/bookings" routerLinkActive="active">Bookings</a>
+      <a nz-button nz-Type="link" (click)="logout()" routerLinkActive="active">Logout</a>
+    </div>
+  </nz-header>
 
-</nz-header>
+  <nz-sider nzCollapsible nzBreakpoint="lg" [nzCollapsedWidth]="0" class="mobile-sidenav">
+    <ul class="nav-links" nz-menu nzTheme="dark" nzMode="inline">
+      
+        <li nz-menu-item>
+          <a nz-button nz-Type="link" routerLink="/client/dashboard" routerLinkActive="active">Dashboard</a>
+        </li>
+        <li nz-menu-item>
+          <a nz-button nz-Type="link" routerLink="/client/bookings" routerLinkActive="active">Bookings</a>
+        </li>
+        <li nz-menu-item>
+          <a nz-button nz-Type="link" (click)="logout()" routerLinkActive="active">Logout</a>
+        </li>
+      
+    </ul>
+  </nz-sider>
+</div>
+
+<div *ngIf="isCompanyLoggedIn">
+  <nz-header class="main-header" nz-row nzType="flex" style="background-color: #bb2929">
+    <div>
+      <h2 style="color: white; padding-left: 10px;">Service Booking System</h2>
+    </div>
+
+    <div class="nav-links">
+      <a nz-button nz-Type="link" routerLink="/company/dashboard" routerLinkActive="active">Dashboard</a>
+      <a nz-button nz-Type="link" routerLink="/company/ad" routerLinkActive="active">Post Ad</a>
+      <a nz-button nz-Type="link" routerLink="/company/ads" routerLinkActive="active">Ads</a>
+      <a nz-button nz-Type="link" (click)="logout()" routerLinkActive="active">Logout</a>
+    </div>
+  </nz-header>
+
+  <nz-sider nzCollapsible nzBreakpoint="lg" [nzCollapsedWidth]="0" class="mobile-sidenav">
+    <ul class="nav-links" nz-menu nzTheme="dark" nzMode="inline">
+      
+        <li nz-menu-item>
+          <a nz-button nz-Type="link" routerLink="/company/dashboard" routerLinkActive="active">Dashboard</a>
+        </li>
+        <li nz-menu-item>
+          <a nz-button nz-Type="link" routerLink="/company/ad" routerLinkActive="active">Ad</a>
+        </li>
+        <li nz-menu-item>
+          <a nz-button nz-Type="link" routerLink="/company/ads" routerLinkActive="active">Ad</a>
+        </li>
+        <li nz-menu-item>
+          <a nz-button nz-Type="link" (click)="logout()" routerLinkActive="active">Logout</a>
+        </li>
+      
+    </ul>
+  </nz-sider>
+</div>
 
 <router-outlet></router-outlet>

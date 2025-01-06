@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { NzNotificationComponent, NzNotificationService } from 'ng-zorro-antd/notification';
 import { Route, Router } from '@angular/router';
+import { UserStorageService } from '../../services/storage/user-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -48,6 +49,12 @@ export class LoginComponent {
       this.authService.login(userName,password).subscribe(
         res => {
           console.log(res);
+          if(UserStorageService.isClientLoggedIn()){
+            this.router.navigateByUrl('client/dashboard');
+          }
+          else if(UserStorageService.isCompanyLoggedIn()){
+            this.router.navigateByUrl('company/dashboard');
+          }
         },
         error => {
           this.notification.error(
