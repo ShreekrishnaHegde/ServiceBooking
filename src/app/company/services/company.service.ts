@@ -12,8 +12,9 @@ export class CompanyService {
 
   constructor(private http: HttpClient) { }
 
-  postad(adDto:any):Observable<any>{
+  postAd(adDto:any):Observable<any>{
     const userId=UserStorageService.getUserId();
+    console.log(userId);
     return this.http.post(BASIC_URL+`api/company/ad/${userId}`,adDto,{
       headers: this.createAuthorizationHeader()
     })
@@ -23,15 +24,31 @@ export class CompanyService {
   createAuthorizationHeader():HttpHeaders{
     let authHeaders:HttpHeaders=new HttpHeaders();
     return authHeaders.set(
-      'Authorizarion','Bearer' + UserStorageService.getToken()
+      'Authorization',
+      'Bearer ' + UserStorageService.getToken()
     )
   }
 
   getAllAdsByUserId():Observable<any>{
     const userId=UserStorageService.getUserId();
-    return this.http.get(BASIC_URL+`api/company/ads/${userId}`,{
+    return this.http.get(BASIC_URL + `api/company/ads/${userId}`,{
+      headers: this.createAuthorizationHeader(),
+    })  
+  }
+  getAdById(adId: any):Observable<any>{
+    return this.http.get(BASIC_URL + `api/company/ad/${adId}`,{
+      headers: this.createAuthorizationHeader(),
+    })  
+  }
+  updateAd(adId: any,adDto:any):Observable<any>{
+    return this.http.put(BASIC_URL+`api/company/ad/${adId}`,adDto,{
       headers: this.createAuthorizationHeader()
     })
+  }
 
+  deleteAd(adId: any):Observable<any>{
+    return this.http.delete(BASIC_URL+`api/company/ad/${adId}`,{
+      headers: this.createAuthorizationHeader()
+    })
   }
 }

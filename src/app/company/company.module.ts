@@ -8,6 +8,7 @@ import { DemoNgZorroAntdModule } from '../DemoNgZorroAntdModule';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateAdComponent } from './pages/create-ad/create-ad.component';
 import { AllAdsComponent } from './pages/all-ads/all-ads.component';
+import { UpdateAdComponent } from './pages/update-ad/update-ad.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AllAdsComponent } from './pages/all-ads/all-ads.component';
     CompanyComponent,
     CompanyDashboardComponent,
     CreateAdComponent,
-    AllAdsComponent
+    AllAdsComponent,
+    UpdateAdComponent
   ],
   imports: [
     CommonModule,

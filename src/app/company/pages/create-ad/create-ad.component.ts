@@ -14,7 +14,7 @@ import { Route, Router } from '@angular/router';
 
 export class CreateAdComponent {
 
-  selectedFile: File | null;
+  selectedFile: File | null   = null; 
   imagePreview: string | ArrayBuffer | null;
 
   validateForm!:FormGroup;
@@ -29,6 +29,7 @@ export class CreateAdComponent {
         serviceName:[null,[Validators.required]],
         description:[null,[Validators.required]],
         price:[null,[Validators.required]],
+        
       })
     }
 
@@ -45,15 +46,13 @@ export class CreateAdComponent {
     }
 
     postAd(){
+      
       const formData:FormData=new FormData();
       formData.append('img',this.selectedFile);
       formData.append('serviceName',this.validateForm.get('serviceName').value);
       formData.append('description',this.validateForm.get('description').value);
-      const price = this.validateForm.get('price').value;
-      // formData.append('price',this.validateForm.get('price').value);
-      formData.append('price', price ? String(Number(price)) : '0');
-
-      this.companyService.postad(formData).subscribe(res =>{
+      formData.append('price',this.validateForm.get('price').value);   
+      this.companyService.postAd(formData).subscribe(res =>{
         this.notification.success(
           'SUCCESS',
           'Ad posted Succesfully!',

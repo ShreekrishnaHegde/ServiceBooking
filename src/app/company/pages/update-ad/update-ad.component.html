@@ -4,20 +4,28 @@
         <div class="child">
 
             <div nz-row class="imgDiv">
-                <h2 style="margin-left: 230px;">Create Ad</h2>
+                <h2 style="margin-left: 230px;">Update Ad</h2>
             </div>
 
-            <form nz-form [formGroup]="validateForm" (ngSubmit)="postAd()">
+            <form nz-form [formGroup]="validateForm" (ngSubmit)="updateAd()">
                 <div nz-row>
-                  <div nz-col [nzMd]="24" [nzSm]="24" [nzXs]="24">
-                    <div class="profile-badge">
-                        <label for="upload_profile_image" class="upload-label" *ngIf="selectedFile">
-                            <img class="profile" [src]="imagePreview" alt="profile"/>
-                        </label>
+                  <div class="file-upload-container">
+                    <label class="file-upload-label">
+                        <span style="margin-left: 100px;">Select a File</span>
                         <input type="file" nz-button nzType="primary" accept="image/x-png,img/gif,image/jprg"
-                            (change)="onFileSelected($event)"/>
-                        <button nz-button nzShape="circle"></button>
-                    </div>
+                            (change)="onFileSelected($event)"/> 
+                        <div *ngIf="imagePreview" class="image-preview">
+                            <div class="circle-image">
+                                <img [src]="imagePreview" alt="Existing Image" class="preview-image"/>
+                            </div>
+                        </div>
+                        <div *ngIf="imagePreview" class="image-preview">
+                            <div class="circle-image">
+                                <img [src]="existingImage" alt="Existing Image" class="preview-image"/>
+                            </div>
+                        </div>
+
+                    </label>
                   </div>
 
                   <div nz-col [nzMd]="24" style="margin-top: 20px;">
@@ -44,7 +52,7 @@
                   </div>
 
                 </div>
-                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Add</button>
+                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Update Ad</button>
               </form>
         </div>
     </div>
