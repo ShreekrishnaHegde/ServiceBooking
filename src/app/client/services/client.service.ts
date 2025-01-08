@@ -24,5 +24,32 @@ export class ClientService {
         headers: this.createAuthorizationHeader(),
       })  
     }
+    getAdDetailsById(adId:any):Observable<any>{
+      return this.http.get(BASIC_URL + `api/client/ad/${adId}`,{
+        headers: this.createAuthorizationHeader(),
+      })  
+    }
+    bookService(bookDto:any):Observable<any>{
+      return this.http.post(BASIC_URL + `api/client/book-service}`,bookDto,{
+        headers: this.createAuthorizationHeader(),
+      })  
+    }
+    giveReview(reviewDto:any):Observable<any>{
+      return this.http.post(BASIC_URL + `api/client/book-review}`,reviewDto,{
+        headers: this.createAuthorizationHeader(),
+      })  
+    }
+    getMyBookings():Observable<any>{
+      const userId=UserStorageService.getUserId();
+      return this.http.get(BASIC_URL + `api/client/my-bookings/${userId}`,{
+        headers: this.createAuthorizationHeader(),
+      })  
+    }
+
+    searchAdByName(name:any):Observable<any>{
+      return this.http.get(BASIC_URL + `api/client/search/${name}`,{
+        headers: this.createAuthorizationHeader(),
+      })  
+    }
 
 }

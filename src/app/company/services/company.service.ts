@@ -40,6 +40,17 @@ export class CompanyService {
       headers: this.createAuthorizationHeader(),
     })  
   }
+  getAllAdBookings():Observable<any>{
+    const companyId=UserStorageService.getUserId();
+    return this.http.get(BASIC_URL + `api/company/bookings/${companyId}`,{
+      headers: this.createAuthorizationHeader(),
+    })  
+  }
+  changeBookingStatus(bookingId:number,status:string ):Observable<any>{
+    return this.http.get(BASIC_URL + `api/company/bookings/${bookingId}/${status}`,{
+      headers: this.createAuthorizationHeader(),
+    })  
+  }
   updateAd(adId: any,adDto:any):Observable<any>{
     return this.http.put(BASIC_URL+`api/company/ad/${adId}`,adDto,{
       headers: this.createAuthorizationHeader()
