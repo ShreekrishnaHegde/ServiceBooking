@@ -14,11 +14,9 @@ export class CompanyService {
 
   postAd(adDto:any):Observable<any>{
     const userId=UserStorageService.getUserId();
-    console.log(userId);
-    return this.http.post(BASIC_URL+`api/company/ad/${userId}`,adDto,{
+    return this.http.post(BASIC_URL + `api/company/ad/${userId}`,adDto,{
       headers: this.createAuthorizationHeader()
     })
-
   }
 
   createAuthorizationHeader():HttpHeaders{
@@ -32,7 +30,7 @@ export class CompanyService {
   getAllAdsByUserId():Observable<any>{
     const userId=UserStorageService.getUserId();
     return this.http.get(BASIC_URL + `api/company/ads/${userId}`,{
-      headers: this.createAuthorizationHeader(),
+      headers: this.createAuthorizationHeader()
     })  
   }
   getAdById(adId: any):Observable<any>{

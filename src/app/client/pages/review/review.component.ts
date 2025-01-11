@@ -4,8 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NzNotificationComponent, NzNotificationService } from 'ng-zorro-antd/notification';
 import { ClientService } from '../../services/client.service';
 import { UserStorageService } from '../../../basic/services/storage/user-storage.service';
-import { subscribe } from 'diagnostics_channel';
-import { error } from 'console';
+
 
 @Component({
   selector: 'app-review',
@@ -16,22 +15,21 @@ import { error } from 'console';
 })
 export class ReviewComponent {
 
-  bookId:number=this.activatedRoute.snapshot.params['id'];
+  // bookId:number=this.activatedRoute.snapshot.params['id'];
+  bookId:number;
   validateForm!:FormGroup;
   ngOnInit(){
     this.validateForm=this.fb.group({
       rating :[null,[Validators.required]],
       review :[null,[Validators.required]],
-
-    }
-
-    )
+    });
+    this.bookId=this.activatedRoute.snapshot.params['id'];
   }
 
   giveReview(){
     const reviewDto={
-      rating=this.validateForm.get("rating").value,
-      review=this.validateForm.get("review").value,
+      rating : this.validateForm.get("rating").value,
+      review : this.validateForm.get("review").value,
       userId: UserStorageService.getUserId(),
       bookId: this.bookId
     }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { error } from 'console';
 
 @Component({
   selector: 'app-company-dashboard',

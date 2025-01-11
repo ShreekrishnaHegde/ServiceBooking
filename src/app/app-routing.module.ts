@@ -11,7 +11,8 @@ const routes: Routes = [{path: 'register_client',component:SignupClientComponent
                         {path: 'register',component:SignupComponent},
 
                         
-                        { path: 'company', loadChildren: () => import('./company/company.module').then(m => m.CompanyModule) }, { path: 'client', loadChildren: () => import('./client/client.module').then(m => m.ClientModule) }];
+                        { path: 'company', loadChildren: () => import('./company/company.module').then(m => m.CompanyModule) }, 
+                        { path: 'client', loadChildren: () => import('./client/client.module').then(m => m.ClientModule) }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

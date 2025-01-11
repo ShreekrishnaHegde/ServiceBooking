@@ -26,7 +26,7 @@ export class ClientDashboardComponent {
   }
 
   ngOnInit(){
-    this.validateForm=this.fb.group.({
+    this.validateForm=this.fb.group({
       service: [null,[Validators.required]]
     })
     this.getAllAds();

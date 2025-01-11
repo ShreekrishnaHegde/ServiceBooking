@@ -12,7 +12,9 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
   styleUrl: './update-ad.component.scss'
 })
 export class UpdateAdComponent {
-  adId:any=this.activatedroute.snapshot.params['id'];
+  // adId:any=this.activatedroute.snapshot.params['id'];
+  adId:any;
+
 
   selectedFile: File | null   = null; 
   imagePreview: string | ArrayBuffer | null;
@@ -25,7 +27,19 @@ export class UpdateAdComponent {
     private router: Router,
     private companyService: CompanyService,
     private activatedroute: ActivatedRoute,){}
+    
+    ngOnInit(){
+      this.validateForm=this.fb.group({
+        serviceName:[null,[Validators.required]],
+        description:[null,[Validators.required]],
+        price:[null,[Validators.required]],
+        
+      });
+      this.getAdById();
+      this.activatedroute.snapshot.params['id'];
 
+
+    }
     
   getAdById(){
     this.companyService.getAdById(this.adId).subscribe(res=>{
@@ -41,16 +55,7 @@ export class UpdateAdComponent {
   
 
     
-      ngOnInit(){
-        this.validateForm=this.fb.group({
-          serviceName:[null,[Validators.required]],
-          description:[null,[Validators.required]],
-          price:[null,[Validators.required]],
-          
-        })
-        this.getAdById();
-
-      }
+      
   
       onFileSelected(event:any){
         this.selectedFile=event.target.files[0];

@@ -13,7 +13,8 @@ import { UserStorageService } from '../../../basic/services/storage/user-storage
   styleUrl: './ad-detail.component.scss'
 })
 export class AdDetailComponent {
-  adId=this.activatedRoute.snapshot.params['adId'];
+  // adId=this.activatedRoute.snapshot.params['adId'];
+  adId: any;
   avatarUrl:any;
   ad:any;
   reviews:any;
@@ -21,7 +22,7 @@ export class AdDetailComponent {
   validateForm!: FormGroup;
   constructor(
     private clientService:ClientService,
-    private adctivatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private notification:NzNotificationService,
     private router:Router,
     private fb:FormBuilder
@@ -31,8 +32,8 @@ export class AdDetailComponent {
   ngOnInit(){
     this.validateForm=this.fb.group({
       bookDate: [null,[Validators.required]]
-
-    })
+    });
+    this.adId=this.activatedRoute.snapshot.params['adId'];
     this.getAdDetailsById();
   }
   getAdDetailsById(){
@@ -47,8 +48,8 @@ export class AdDetailComponent {
   bookService(){
     const bookServiceDto={
       bookDate: this.validateForm.get(['bookDate']).value,
-      adId=this.adId,
-      userId=UserStorageService.getUserId()
+      adId: this.adId,
+      userId: UserStorageService.getUserId()
 
     }
     this.clientService.bookService(bookServiceDto).subscribe(res=>{
